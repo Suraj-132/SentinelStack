@@ -1,0 +1,52 @@
+/* Reset default browser styles */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Body */
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #f9f9f9; color: #333; }
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #0b3d91;
+    color: #fff;
+}
+header nav a {
+    color: #fff;
+    margin-left: 1rem;
+    text-decoration: none;
+}
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 6rem 2rem;
+    background: #007bff;
+    color: #fff;
+}
+.hero button {
+    margin: 1rem;
+    padding: 0.8rem 2rem;
+    background: #fff;
+    color: #007bff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.hero button:hover {
+    background: #e0e0e0;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: #0b3d91;
+    color: #fff;
+    margin-top: 4rem;
+}
