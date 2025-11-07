@@ -18,5 +18,7 @@ public interface APIKeyRepository extends JpaRepository<APIKey, Long> {
     
     long countByUserId(Long userId);
     
+    long countByIsActive(boolean isActive);
+    
     boolean existsByKeyHash(String keyHash);
 }
