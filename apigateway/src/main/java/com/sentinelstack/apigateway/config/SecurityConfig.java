@@ -1,5 +1,6 @@
 package com.sentinelstack.apigateway.config;
 
+import com.sentinelstack.apigateway.filter.RateLimitFilter;
 import com.sentinelstack.apigateway.filter.RequestLoggingFilter;
 import com.sentinelstack.apigateway.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
@@ -16,10 +17,14 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final RequestLoggingFilter requestLoggingFilter;
+    private final RateLimitFilter rateLimitFilter;
 
-    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter, RequestLoggingFilter requestLoggingFilter) {
+    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter, 
+                         RequestLoggingFilter requestLoggingFilter,
+                         RateLimitFilter rateLimitFilter) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.requestLoggingFilter = requestLoggingFilter;
+        this.rateLimitFilter = rateLimitFilter;
     }
 
     @Bean
@@ -36,7 +41,8 @@ public class SecurityConfig {
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-            .addFilterAfter(requestLoggingFilter, UsernamePasswordAuthenticationFilter.class);
+            .addFilterAfter(rateLimitFilter, UsernamePasswordAuthenticationFilter.class)
+            .addFilterAfter(requestLoggingFilter, RateLimitFilter.class);
         
         return http.build();
     }
